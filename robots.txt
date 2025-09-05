@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://symageecontractors.co.ke/sitemap.xml
