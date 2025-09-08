@@ -75,7 +75,7 @@ $meta_description = 'Professional roofing, biodigester installation, aluminum & 
             color: #6c757d;
         }
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('roofingandgutters8.jpeg');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('roofingandgutters7.jpeg');
             background-size: cover;
             background-position: center;
             padding: 100px 0;

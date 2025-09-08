@@ -15,7 +15,241 @@ require_once 'config.php';
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #ffc107;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 76px;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+            height: 80vh;
+            min-height: 600px;
+            background-image: url('bio1.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(13, 110, 253, 0.85), rgba(13, 110, 253, 0.7));
+            z-index: 2;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 3;
+        }
+        
+        /* Portfolio Slideshow */
+        .portfolio-slideshow {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+        }
+        
+        .portfolio-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .portfolio-slide.active {
+            opacity: 1;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-slideshow:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+        
+        /* Slideshow controls */
+        .slideshow-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            z-index: 4;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .slideshow-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .slideshow-dot.active {
+            background-color: white;
+        }
+        
+        .slideshow-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 4;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .slideshow-nav:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .slideshow-prev {
+            left: 20px;
+        }
+        
+        .slideshow-next {
+            right: 20px;
+        }
+        
+        /* Service Cards */
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        /* Feature Icons */
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(13, 110, 253, 0.1);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+        
+        /* Process Steps */
+        .process-step {
+            padding: 1.5rem 1rem;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .service-icon, .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .process-step {
+                margin-bottom: 1.5rem;
+            }
+            
+            .icon-container {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 0.5rem;
+            }
+            
+            .slideshow-nav {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .hero-section {
+                height: 70vh;
+                min-height: 500px;
+            }
+            
+            .portfolio-slideshow {
+                height: 300px;
+            }
+        }
+    </style>
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -78,10 +312,9 @@ require_once 'config.php';
 
     <!-- Hero Section -->
     <section class="hero-section position-relative">
-        <div class="hero-bg" style="background-image: url('biodigester-hero.jpg');"></div>
         <div class="hero-overlay"></div>
-        <div class="container position-relative">
-            <div class="row align-items-center min-vh-100 pt-5">
+        <div class="container position-relative hero-content">
+            <div class="row align-items-center min-vh-80 py-5">
                 <div class="col-lg-8">
                     <h1 class="display-4 fw-bold text-white mb-4">
                         Professional Biodigester Installation in Kenya
@@ -114,7 +347,9 @@ require_once 'config.php';
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center">
-                                <i class="fas fa-leaf text-success me-3 fs-4"></i>
+                                <div class="icon-container">
+                                    <i class="fas fa-leaf text-success me-3 fs-4"></i>
+                                </div>
                                 <div>
                                     <h6 class="mb-1">Eco-Friendly</h6>
                                     <small class="text-muted">100% natural process</small>
@@ -123,7 +358,9 @@ require_once 'config.php';
                         </div>
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center">
-                                <i class="fas fa-tint text-primary me-3 fs-4"></i>
+                                <div class="icon-container">
+                                    <i class="fas fa-tint text-primary me-3 fs-4"></i>
+                                </div>
                                 <div>
                                     <h6 class="mb-1">Water Efficient</h6>
                                     <small class="text-muted">Minimal water usage</small>
@@ -132,7 +369,9 @@ require_once 'config.php';
                         </div>
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center">
-                                <i class="fas fa-fire text-warning me-3 fs-4"></i>
+                                <div class="icon-container">
+                                    <i class="fas fa-fire text-warning me-3 fs-4"></i>
+                                </div>
                                 <div>
                                     <h6 class="mb-1">Biogas Production</h6>
                                     <small class="text-muted">Clean cooking gas</small>
@@ -141,7 +380,9 @@ require_once 'config.php';
                         </div>
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center">
-                                <i class="fas fa-tools text-info me-3 fs-4"></i>
+                                <div class="icon-container">
+                                    <i class="fas fa-tools text-info me-3 fs-4"></i>
+                                </div>
                                 <div>
                                     <h6 class="mb-1">Low Maintenance</h6>
                                     <small class="text-muted">Minimal upkeep required</small>
@@ -150,15 +391,56 @@ require_once 'config.php';
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <img src="/placeholder.svg?height=400&width=600" alt="Biodigester System" class="img-fluid rounded shadow">
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-4">Our Past Biodigester Projects</h2>
+                    <p class="lead text-muted">
+                        View our completed biodigester installations across Kenya
+                    </p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="portfolio-slideshow">
+                        <?php for($i = 2; $i <= 10; $i++): ?>
+                        <div class="portfolio-slide <?php echo $i === 2 ? 'active' : ''; ?>" 
+                             style="background-image: url('bio<?php echo $i; ?>.jpeg');">
+                            <div class="portfolio-overlay">
+                                <h5 class="mb-1">Biodigester Project <?php echo $i; ?></h5>
+                                <p class="mb-0 small">Completed installation in <?php echo ['Nairobi', 'Mombasa', 'Kisumu', 'Nakuru', 'Eldoret'][array_rand(['Nairobi', 'Mombasa', 'Kisumu', 'Nakuru', 'Eldoret'])]; ?></p>
+                            </div>
+                        </div>
+                        <?php endfor; ?>
+                        
+                        <div class="slideshow-nav slideshow-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </div>
+                        <div class="slideshow-nav slideshow-next">
+                            <i class="fas fa-chevron-right"></i>
+                        </div>
+                        
+                        <div class="slideshow-controls">
+                            <?php for($i = 2; $i <= 10; $i++): ?>
+                            <div class="slideshow-dot <?php echo $i === 2 ? 'active' : ''; ?>" data-slide="<?php echo $i - 2; ?>"></div>
+                            <?php endfor; ?>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services -->
-    <section class="py-5 bg-light">
+    <section class="py-5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto text-center mb-5">
@@ -264,7 +546,7 @@ require_once 'config.php';
     </section>
 
     <!-- Benefits -->
-    <section class="py-5">
+    <section class="py-5 bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto text-center mb-5">
@@ -317,7 +599,7 @@ require_once 'config.php';
     </section>
 
     <!-- Process -->
-    <section class="py-5 bg-light">
+    <section class="py-5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto text-center mb-5">
@@ -465,6 +747,83 @@ require_once 'config.php';
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
-    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Portfolio slideshow functionality
+            const slides = document.querySelectorAll('.portfolio-slide');
+            const dots = document.querySelectorAll('.slideshow-dot');
+            const prevButton = document.querySelector('.slideshow-prev');
+            const nextButton = document.querySelector('.slideshow-next');
+            let currentSlide = 0;
+            let slideInterval;
+            
+            // Function to show a specific slide
+            function showSlide(index) {
+                // Hide all slides
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                // Show the selected slide
+                slides[index].classList.add('active');
+                dots[index].classList.add('active');
+                
+                currentSlide = index;
+            }
+            
+            // Function to go to next slide
+            function nextSlide() {
+                let next = currentSlide + 1;
+                if (next >= slides.length) next = 0;
+                showSlide(next);
+            }
+            
+            // Function to go to previous slide
+            function prevSlide() {
+                let prev = currentSlide - 1;
+                if (prev < 0) prev = slides.length - 1;
+                showSlide(prev);
+            }
+            
+            // Set up automatic slideshow
+            function startSlideshow() {
+                slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+            }
+            
+            // Stop automatic slideshow
+            function stopSlideshow() {
+                clearInterval(slideInterval);
+            }
+            
+            // Event listeners for navigation
+            nextButton.addEventListener('click', function() {
+                stopSlideshow();
+                nextSlide();
+                startSlideshow();
+            });
+            
+            prevButton.addEventListener('click', function() {
+                stopSlideshow();
+                prevSlide();
+                startSlideshow();
+            });
+            
+            // Event listeners for dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    stopSlideshow();
+                    showSlide(index);
+                    startSlideshow();
+                });
+            });
+            
+            // Pause slideshow when hovering
+            const slideshowContainer = document.querySelector('.portfolio-slideshow');
+            slideshowContainer.addEventListener('mouseenter', stopSlideshow);
+            slideshowContainer.addEventListener('mouseleave', startSlideshow);
+            
+            // Start the slideshow
+            startSlideshow();
+        });
+    </script>
 </body>
 </html>

@@ -1,7 +1,8 @@
 <?php
-$config = include 'config.php';
-$page_title = 'Contact Us - ' . $config['site_name'];
-$meta_description = 'Contact Symagee Contractors for professional construction services in Nairobi, Kenya. Call +254 728452393 or send us a message for roofing, biodigester, aluminum & glass, and painting services.';
+require_once 'config.php';
+
+$page_title = 'Contact Us - ' . SITE_NAME;
+$meta_description = 'Contact Symagee Contractors for professional construction services in Nairobi, Kenya. Call ' . PHONE . ' or send us a message for roofing, biodigester, aluminum & glass, and painting services.';
 
 $message = '';
 $message_type = '';
@@ -41,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $whatsapp_message .= "%0AMessage:%0A" . urlencode($user_message);
             
             // Redirect to WhatsApp
-            $whatsapp_url = "https://wa.me/" . str_replace('+', '', $config['whatsapp']) . "?text=" . $whatsapp_message;
+            $whatsapp_url = "https://wa.me/" . str_replace('+', '', WHATSAPP) . "?text=" . $whatsapp_message;
             header("Location: " . $whatsapp_url);
             exit();
         }
@@ -58,8 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta property="og:title" content="<?php echo $page_title; ?>">
     <meta property="og:description" content="<?php echo $meta_description; ?>">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="<?php echo $config['base_url']; ?>/contact.php">
-    <link rel="canonical" href="<?php echo $config['base_url']; ?>/contact.php">
+    <meta property="og:url" content="<?php echo SITE_URL; ?>/contact.php">
+    <link rel="canonical" href="<?php echo SITE_URL; ?>/contact.php">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
     <script type="application/ld+json">
@@ -71,13 +72,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "<?php echo $config['base_url']; ?>"
+                "item": "<?php echo SITE_URL; ?>"
             },
             {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Contact",
-                "item": "<?php echo $config['base_url']; ?>/contact.php"
+                "item": "<?php echo SITE_URL; ?>/contact.php"
             }
         ]
     }
@@ -86,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.php"><?php echo $config['site_name']; ?></a>
+            <a class="navbar-brand fw-bold" href="index.php"><?php echo SITE_NAME; ?></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -189,23 +190,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="contact-info">
                             <div class="mb-4">
                                 <h5 class="fw-bold">📞 Phone</h5>
-                                <p class="mb-1"><a href="tel:<?php echo $config['phone']; ?>" class="text-decoration-none"><?php echo $config['phone']; ?></a></p>
+                                <p class="mb-1"><a href="tel:<?php echo PHONE; ?>" class="text-decoration-none"><?php echo PHONE; ?></a></p>
                             </div>
                             
                             <div class="mb-4">
                                 <h5 class="fw-bold">✉️ Email</h5>
-                                <p class="mb-1"><a href="mailto:<?php echo $config['company_email']; ?>" class="text-decoration-none"><?php echo $config['company_email']; ?></a></p>
-                                <p class="mb-1"><a href="mailto:<?php echo $config['alternate_email']; ?>" class="text-decoration-none"><?php echo $config['alternate_email']; ?></a></p>
+                                <p class="mb-1"><a href="mailto:<?php echo EMAIL; ?>" class="text-decoration-none"><?php echo EMAIL; ?></a></p>
+                                <p class="mb-1"><a href="mailto:<?php echo ALTERNATE_EMAIL; ?>" class="text-decoration-none"><?php echo ALTERNATE_EMAIL; ?></a></p>
                             </div>
                             
                             <div class="mb-4">
                                 <h5 class="fw-bold">📍 Address</h5>
-                                <p>Makadara, Nairobi, Kenya</p>
+                                <p><?php echo ADDRESS; ?></p>
                             </div>
                             
                             <div class="mb-4">
                                 <h5 class="fw-bold">💬 WhatsApp</h5>
-                                <p><a href="https://wa.me/<?php echo str_replace('+', '', $config['whatsapp']); ?>" target="_blank" class="text-decoration-none"><?php echo $config['whatsapp']; ?></a></p>
+                                <p><a href="https://wa.me/<?php echo str_replace('+', '', WHATSAPP); ?>" target="_blank" class="text-decoration-none"><?php echo WHATSAPP; ?></a></p>
                             </div>
                             
                             <div class="mb-4">
@@ -248,11 +249,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-4">
-                    <h5 class="fw-bold mb-3"><?php echo $config['site_name']; ?></h5>
-                    <p><?php echo $config['tagline']; ?></p>
-                    <p class="mb-2"><strong>Phone:</strong> <a href="tel:<?php echo $config['phone']; ?>" class="text-white"><?php echo $config['phone']; ?></a></p>
-                    <p class="mb-2"><strong>Email:</strong> <a href="mailto:<?php echo $config['company_email']; ?>" class="text-white"><?php echo $config['company_email']; ?></a></p>
-                    <p><strong>Address:</strong> Makadara, Nairobi, Kenya</p>
+                    <h5 class="fw-bold mb-3"><?php echo SITE_NAME; ?></h5>
+                    <p><?php echo TAGLINE; ?></p>
+                    <p class="mb-2"><strong>Phone:</strong> <a href="tel:<?php echo PHONE; ?>" class="text-white"><?php echo PHONE; ?></a></p>
+                    <p class="mb-2"><strong>Email:</strong> <a href="mailto:<?php echo EMAIL; ?>" class="text-white"><?php echo EMAIL; ?></a></p>
+                    <p><strong>Address:</strong> <?php echo ADDRESS; ?></p>
                 </div>
                 <div class="col-lg-2">
                     <h6 class="fw-bold mb-3">Services</h6>
@@ -281,18 +282,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="col-lg-2">
                     <h6 class="fw-bold mb-3">Follow Us</h6>
-                    <a href="<?php echo $config['facebook']; ?>" class="text-white me-3">Facebook</a>
+                    <a href="<?php echo FACEBOOK; ?>" class="text-white me-3">Facebook</a>
                 </div>
             </div>
             <hr class="my-4">
             <div class="text-center">
-                <p class="mb-0">&copy; <?php echo date('Y'); ?> <?php echo $config['site_name']; ?>. All rights reserved.</p>
+                <p class="mb-0">&copy; <?php echo date('Y'); ?> <?php echo SITE_NAME; ?>. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <div class="whatsapp-float">
-        <a href="https://wa.me/<?php echo str_replace('+', '', $config['whatsapp']); ?>" target="_blank" class="btn btn-success rounded-circle">
+        <a href="https://wa.me/<?php echo str_replace('+', '', WHATSAPP); ?>" target="_blank" class="btn btn-success rounded-circle">
             <span class="whatsapp-icon">💬</span>
         </a>
     </div>

@@ -7,8 +7,8 @@ require_once 'config.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Projects - <?php echo $config['company_name']; ?></title>
-    <meta name="description" content="View our completed construction projects including residential buildings, commercial structures, and infrastructure development across Kenya.">
-    <meta name="keywords" content="construction projects Kenya, building portfolio, completed projects, residential construction, commercial buildings">
+    <meta name="description" content="View our completed construction projects including roofing, biodigester installation, and aluminum & glass works across Kenya.">
+    <meta name="keywords" content="construction projects Kenya, roofing services, biodigester installation, aluminum glass works">
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,6 +16,57 @@ require_once 'config.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('placeholder.svg?height=600&width=1200') center/cover no-repeat;
+            margin-top: 76px;
+        }
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .carousel-item {
+            height: 300px;
+        }
+        .carousel-item img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 768px) {
+            .carousel-item {
+                height: 250px;
+            }
+            .stats-number {
+                font-size: 2rem;
+            }
+            .display-4 {
+                font-size: 2.5rem;
+            }
+        }
+        @media (max-width: 576px) {
+            .carousel-item {
+                height: 200px;
+            }
+            .btn-group .btn {
+                padding: 0.375rem 0.5rem;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -61,166 +112,262 @@ require_once 'config.php';
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section bg-primary text-white py-5" style="margin-top: 76px;">
+    <section class="hero-section py-5 text-white">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-8">
                     <h1 class="display-4 fw-bold mb-3">Our Projects</h1>
-                    <p class="lead mb-4">Explore our portfolio of successfully completed construction projects across Kenya. From residential homes to commercial buildings, see the quality and craftsmanship that sets us apart.</p>
+                    <p class="lead mb-4">Explore our portfolio of successfully completed projects across Kenya. From roofing solutions to biodigester installations and aluminum works, see the quality and craftsmanship that sets us apart.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Project Categories -->
+    <!-- Service Categories -->
     <section class="py-5">
         <div class="container">
             <div class="row mb-5">
                 <div class="col-12 text-center">
-                    <h2 class="fw-bold mb-3">Project Categories</h2>
-                    <p class="text-muted">Browse our projects by category</p>
+                    <h2 class="fw-bold mb-3">Our Services</h2>
+                    <p class="text-muted">Browse our projects by service category</p>
                 </div>
             </div>
             
             <!-- Filter Buttons -->
             <div class="row mb-4">
                 <div class="col-12 text-center">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-outline-primary active" data-filter="all">All Projects</button>
-                        <button type="button" class="btn btn-outline-primary" data-filter="residential">Residential</button>
-                        <button type="button" class="btn btn-outline-primary" data-filter="commercial">Commercial</button>
-                        <button type="button" class="btn btn-outline-primary" data-filter="infrastructure">Infrastructure</button>
+                    <div class="btn-group flex-wrap" role="group">
+                        <button type="button" class="btn btn-outline-primary active" data-filter="all">All Services</button>
+                        <button type="button" class="btn btn-outline-primary" data-filter="roofing">Roofing & Gutters</button>
+                        <button type="button" class="btn btn-outline-primary" data-filter="biodigester">Biodigester Installation</button>
+                        <button type="button" class="btn btn-outline-primary" data-filter="aluminum">Aluminum & Glass</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Projects Grid -->
-            <div class="row g-4" id="projects-grid">
-                <!-- Residential Projects -->
-                <div class="col-lg-4 col-md-6 project-item" data-category="residential">
-                    <div class="card h-100 shadow-sm">
-                        <img src="/placeholder.svg?height=250&width=400" class="card-img-top" alt="Modern Family Home">
-                        <div class="card-body">
-                            <h5 class="card-title">Modern Family Home - Nairobi</h5>
-                            <p class="card-text">4-bedroom contemporary house with modern amenities and sustainable design features.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Completed: 2023</small>
-                                <span class="badge bg-success">Residential</span>
+            <!-- Services Grid -->
+            <div class="row g-4" id="services-grid">
+                <!-- Roofing Service -->
+                <div class="col-lg-6 service-item" data-category="roofing">
+                    <div class="card h-100 shadow-sm service-card">
+                        <div id="roofingCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <?php for ($i = 0; $i < 14; $i++): ?>
+                                <button type="button" data-bs-target="#roofingCarousel" data-bs-slide-to="<?php echo $i; ?>" class="<?php echo $i === 0 ? 'active' : ''; ?>"></button>
+                                <?php endfor; ?>
                             </div>
+                            <div class="carousel-inner">
+                                <?php for ($i = 1; $i <= 14; $i++): ?>
+                                <div class="carousel-item <?php echo $i === 1 ? 'active' : ''; ?>">
+                                    <img src="roofingandgutters<?php echo $i; ?>.jpeg" class="d-block w-100" alt="Roofing project <?php echo $i; ?>">
+                                </div>
+                                <?php endfor; ?>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#roofingCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#roofingCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center mb-3">
+                                <i class="fas fa-home text-primary service-icon"></i>
+                                <h3 class="card-title">Roofing & Gutters</h3>
+                            </div>
+                            <p class="card-text">Professional roofing solutions including installation, repair, and maintenance of various roofing systems and gutter installations for both residential and commercial properties.</p>
+                            
+                            <div class="row text-center mt-4">
+                                <div class="col-md-4">
+                                    <div class="stats-number text-primary">250+</div>
+                                    <div class="text-muted">Projects Completed</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stats-number text-primary">15+</div>
+                                    <div class="text-muted">Years Experience</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stats-number text-primary">98%</div>
+                                    <div class="text-muted">Client Satisfaction</div>
+                                </div>
+                            </div>
+                            
+                            <ul class="list-group list-group-flush mt-3">
+                                <li class="list-group-item">Metal roofing installation & repair</li>
+                                <li class="list-group-item">Tile roofing solutions</li>
+                                <li class="list-group-item">Gutter systems installation</li>
+                                <li class="list-group-item">Roof waterproofing</li>
+                                <li class="list-group-item">Roof maintenance programs</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <a href="roofing.php" class="btn btn-primary w-100">View Roofing Services</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 project-item" data-category="residential">
-                    <div class="card h-100 shadow-sm">
-                        <img src="/placeholder.svg?height=250&width=400" class="card-img-top" alt="Luxury Villa">
-                        <div class="card-body">
-                            <h5 class="card-title">Luxury Villa - Kiambu</h5>
-                            <p class="card-text">Elegant 5-bedroom villa with swimming pool, landscaped gardens, and premium finishes.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Completed: 2023</small>
-                                <span class="badge bg-success">Residential</span>
+                <!-- Biodigester Service -->
+                <div class="col-lg-6 service-item" data-category="biodigester">
+                    <div class="card h-100 shadow-sm service-card">
+                        <div id="biodigesterCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <?php for ($i = 0; $i < 10; $i++): ?>
+                                <button type="button" data-bs-target="#biodigesterCarousel" data-bs-slide-to="<?php echo $i; ?>" class="<?php echo $i === 0 ? 'active' : ''; ?>"></button>
+                                <?php endfor; ?>
                             </div>
+                            <div class="carousel-inner">
+                                <?php for ($i = 1; $i <= 10; $i++): ?>
+                                <div class="carousel-item <?php echo $i === 1 ? 'active' : ''; ?>">
+                                    <img src="bio<?php echo $i; ?>.jpeg" class="d-block w-100" alt="Biodigester project <?php echo $i; ?>">
+                                </div>
+                                <?php endfor; ?>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#biodigesterCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#biodigesterCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center mb-3">
+                                <i class="fas fa-recycle text-success service-icon"></i>
+                                <h3 class="card-title">Biodigester Installation</h3>
+                            </div>
+                            <p class="card-text">Eco-friendly waste management solutions through professional biodigester installation for residential, commercial, and institutional properties across Kenya.</p>
+                            
+                            <div class="row text-center mt-4">
+                                <div class="col-md-4">
+                                    <div class="stats-number text-success">180+</div>
+                                    <div class="text-muted">Installations</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stats-number text-success">10+</div>
+                                    <div class="text-muted">Years Experience</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stats-number text-success">100%</div>
+                                    <div class="text-muted">Compliance Rate</div>
+                                </div>
+                            </div>
+                            
+                            <ul class="list-group list-group-flush mt-3">
+                                <li class="list-group-item">Residential biodigester systems</li>
+                                <li class="list-group-item">Commercial-scale biodigesters</li>
+                                <li class="list-group-item">Septic tank conversions</li>
+                                <li class="list-group-item">Efficient waste management</li>
+                                <li class="list-group-item">Environmentally friendly solutions</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <a href="biodigester.php" class="btn btn-success w-100">View Biodigester Services</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 project-item" data-category="residential">
-                    <div class="card h-100 shadow-sm">
-                        <img src="/placeholder.svg?height=250&width=400" class="card-img-top" alt="Apartment Complex">
-                        <div class="card-body">
-                            <h5 class="card-title">Apartment Complex - Mombasa</h5>
-                            <p class="card-text">12-unit apartment building with modern design and energy-efficient systems.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Completed: 2022</small>
-                                <span class="badge bg-success">Residential</span>
+                <!-- Aluminum & Glass Service -->
+                <div class="col-lg-6 service-item" data-category="aluminum">
+                    <div class="card h-100 shadow-sm service-card">
+                        <div id="aluminumCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <?php for ($i = 0; $i < 15; $i++): ?>
+                                <button type="button" data-bs-target="#aluminumCarousel" data-bs-slide-to="<?php echo $i; ?>" class="<?php echo $i === 0 ? 'active' : ''; ?>"></button>
+                                <?php endfor; ?>
                             </div>
+                            <div class="carousel-inner">
+                                <?php for ($i = 1; $i <= 15; $i++): ?>
+                                <div class="carousel-item <?php echo $i === 1 ? 'active' : ''; ?>">
+                                    <img src="al<?php echo $i; ?>.jpeg" class="d-block w-100" alt="Aluminum project <?php echo $i; ?>">
+                                </div>
+                                <?php endfor; ?>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#aluminumCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#aluminumCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center mb-3">
+                                <i class="fas fa-building text-info service-icon"></i>
+                                <h3 class="card-title">Aluminum & Glass Works</h3>
+                            </div>
+                            <p class="card-text">Premium aluminum and glass solutions including windows, doors, partitions, and facade systems for modern residential and commercial buildings.</p>
+                            
+                            <div class="row text-center mt-4">
+                                <div class="col-md-4">
+                                    <div class="stats-number text-info">300+</div>
+                                    <div class="text-muted">Projects Completed</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stats-number text-info">12+</div>
+                                    <div class="text-muted">Years Experience</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stats-number text-info">99%</div>
+                                    <div class="text-muted">Client Satisfaction</div>
+                                </div>
+                            </div>
+                            
+                            <ul class="list-group list-group-flush mt-3">
+                                <li class="list-group-item">Aluminum windows & doors</li>
+                                <li class="list-group-item">Glass partitions & facades</li>
+                                <li class="list-group-item">Sliding door systems</li>
+                                <li class="list-group-item">Custom aluminum works</li>
+                                <li class="list-group-item">Commercial storefronts</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <a href="aluminum_glass.php" class="btn btn-info w-100 text-white">View Aluminum Services</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Commercial Projects -->
-                <div class="col-lg-4 col-md-6 project-item" data-category="commercial">
-                    <div class="card h-100 shadow-sm">
-                        <img src="/placeholder.svg?height=250&width=400" class="card-img-top" alt="Office Building">
-                        <div class="card-body">
-                            <h5 class="card-title">Corporate Office Building - Nairobi CBD</h5>
-                            <p class="card-text">8-story modern office complex with state-of-the-art facilities and LEED certification.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Completed: 2023</small>
-                                <span class="badge bg-primary">Commercial</span>
-                            </div>
+                <!-- Painting Service -->
+                <div class="col-lg-6 service-item" data-category="painting">
+                    <div class="card h-100 shadow-sm service-card">
+                        <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
+                            <i class="fas fa-paint-roller fa-5x text-warning"></i>
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 project-item" data-category="commercial">
-                    <div class="card h-100 shadow-sm">
-                        <img src="/placeholder.svg?height=250&width=400" class="card-img-top" alt="Shopping Center">
                         <div class="card-body">
-                            <h5 class="card-title">Shopping Center - Kisumu</h5>
-                            <p class="card-text">Multi-level retail complex with parking facilities and modern architectural design.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Completed: 2022</small>
-                                <span class="badge bg-primary">Commercial</span>
+                            <div class="text-center mb-3">
+                                <i class="fas fa-paint-brush text-warning service-icon"></i>
+                                <h3 class="card-title">Painting Works</h3>
                             </div>
+                            <p class="card-text">Professional interior and exterior painting services with a wide range of color options and finishes to transform your space.</p>
+                            
+                            <div class="row text-center mt-4">
+                                <div class="col-md-4">
+                                    <div class="stats-number text-warning">400+</div>
+                                    <div class="text-muted">Projects Completed</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stats-number text-warning">8+</div>
+                                    <div class="text-muted">Years Experience</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="stats-number text-warning">97%</div>
+                                    <div class="text-muted">Client Satisfaction</div>
+                                </div>
+                            </div>
+                            
+                            <ul class="list-group list-group-flush mt-3">
+                                <li class="list-group-item">Interior painting</li>
+                                <li class="list-group-item">Exterior painting</li>
+                                <li class="list-group-item">Decorative finishes</li>
+                                <li class="list-group-item">Surface preparation</li>
+                                <li class="list-group-item">Color consultation</li>
+                            </ul>
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 project-item" data-category="commercial">
-                    <div class="card h-100 shadow-sm">
-                        <img src="/placeholder.svg?height=250&width=400" class="card-img-top" alt="Industrial Warehouse">
-                        <div class="card-body">
-                            <h5 class="card-title">Industrial Warehouse - Thika</h5>
-                            <p class="card-text">Large-scale warehouse facility with loading docks and climate control systems.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Completed: 2023</small>
-                                <span class="badge bg-primary">Commercial</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Infrastructure Projects -->
-                <div class="col-lg-4 col-md-6 project-item" data-category="infrastructure">
-                    <div class="card h-100 shadow-sm">
-                        <img src="/placeholder.svg?height=250&width=400" class="card-img-top" alt="Road Construction">
-                        <div class="card-body">
-                            <h5 class="card-title">Highway Expansion - Nakuru</h5>
-                            <p class="card-text">5km highway expansion project with improved drainage and safety features.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Completed: 2022</small>
-                                <span class="badge bg-warning">Infrastructure</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 project-item" data-category="infrastructure">
-                    <div class="card h-100 shadow-sm">
-                        <img src="/placeholder.svg?height=250&width=400" class="card-img-top" alt="Bridge Construction">
-                        <div class="card-body">
-                            <h5 class="card-title">River Bridge - Eldoret</h5>
-                            <p class="card-text">Concrete bridge construction connecting rural communities with improved access.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Completed: 2023</small>
-                                <span class="badge bg-warning">Infrastructure</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 project-item" data-category="infrastructure">
-                    <div class="card h-100 shadow-sm">
-                        <img src="/placeholder.svg?height=250&width=400" class="card-img-top" alt="Water Treatment Plant">
-                        <div class="card-body">
-                            <h5 class="card-title">Water Treatment Facility - Machakos</h5>
-                            <p class="card-text">Modern water treatment plant serving 50,000 residents with clean water supply.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">Completed: 2022</small>
-                                <span class="badge bg-warning">Infrastructure</span>
-                            </div>
+                        <div class="card-footer bg-transparent">
+                            <a href="painting.php" class="btn btn-warning w-100">View Painting Services</a>
                         </div>
                     </div>
                 </div>
@@ -298,14 +445,12 @@ require_once 'config.php';
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
-    <script src="main.js"></script>
     
     <script>
-        // Project filtering functionality
+        // Service filtering functionality
         document.addEventListener('DOMContentLoaded', function() {
             const filterButtons = document.querySelectorAll('[data-filter]');
-            const projectItems = document.querySelectorAll('.project-item');
+            const serviceItems = document.querySelectorAll('.service-item');
 
             filterButtons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -315,8 +460,8 @@ require_once 'config.php';
                     filterButtons.forEach(btn => btn.classList.remove('active'));
                     this.classList.add('active');
                     
-                    // Filter projects
-                    projectItems.forEach(item => {
+                    // Filter services
+                    serviceItems.forEach(item => {
                         if (filter === 'all' || item.getAttribute('data-category') === filter) {
                             item.style.display = 'block';
                         } else {
