@@ -20,13 +20,29 @@ $meta_description = 'Expert roofing, biodigester installation, aluminum and glas
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="<?php echo SITE_URL; ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
+    <link href="styles.css" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "<?php echo SITE_NAME; ?>",
+        "url": "<?php echo SITE_URL; ?>",
+        "logo": "<?php echo SITE_URL; ?>/company-logo.jpg",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "<?php echo PHONE; ?>",
+            "contactType": "customer service",
+            "areaServed": "KE",
+            "availableLanguage": "English"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Nairobi",
+            "addressCountry": "KE"
         }
+    }
+    </script>
+    <style>
         .carousel-item {
             height: 500px;
             overflow: hidden;
@@ -90,16 +106,6 @@ $meta_description = 'Expert roofing, biodigester installation, aluminum and glas
             bottom: 30px;
             right: 30px;
             z-index: 100;
-            background-color: #25D366;
-            color: white;
-            border-radius: 50px;
-            padding: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-        }
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            background-color: #20c35c;
         }
         .back-to-top {
             position: fixed;
@@ -107,27 +113,6 @@ $meta_description = 'Expert roofing, biodigester installation, aluminum and glas
             right: 90px;
             z-index: 100;
             display: none;
-            background-color: #0d6efd;
-            border-radius: 50px;
-            padding: 10px 15px;
-        }
-        @media (max-width: 576px) {
-            .hero-section h2 {
-                font-size: 2.5rem;
-            }
-            .hero-section p {
-                font-size: 1rem;
-            }
-            .carousel-item {
-                height: 300px;
-            }
-            .stat-number {
-                font-size: 2rem;
-            }
-            .container {
-                padding-left: 15px;
-                padding-right: 15px;
-            }
         }
     </style>
 </head>
@@ -188,7 +173,7 @@ $meta_description = 'Expert roofing, biodigester installation, aluminum and glas
                 <div class="col-md-6 col-lg-3">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body text-center">
-                            <i class="fas fa-home service-icon mb-3"></i>
+                            <div class="service-icon mb-3">🏠</div>
                             <h5 class="card-title">Roofing Services</h5>
                             <p class="card-text">Expert installation and repair of iron sheets, tiles, and modern roofing systems.</p>
                             <a href="roofing.php" class="btn btn-primary">Learn More</a>
@@ -198,7 +183,7 @@ $meta_description = 'Expert roofing, biodigester installation, aluminum and glas
                 <div class="col-md-6 col-lg-3">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body text-center">
-                            <i class="fas fa-recycle service-icon mb-3"></i>
+                            <div class="service-icon mb-3">♻️</div>
                             <h5 class="card-title">Biodigester Installation</h5>
                             <p class="card-text">Eco-friendly waste management solutions for homes and businesses.</p>
                             <a href="biodigester.php" class="btn btn-primary">Learn More</a>
@@ -208,7 +193,7 @@ $meta_description = 'Expert roofing, biodigester installation, aluminum and glas
                 <div class="col-md-6 col-lg-3">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body text-center">
-                            <i class="fas fa-window-maximize service-icon mb-3"></i>
+                            <div class="service-icon mb-3">🪟</div>
                             <h5 class="card-title">Aluminum & Glass</h5>
                             <p class="card-text">Modern railings, windows, and glass installations for contemporary buildings.</p>
                             <a href="aluminum_glass.php" class="btn btn-primary">Learn More</a>
@@ -218,7 +203,7 @@ $meta_description = 'Expert roofing, biodigester installation, aluminum and glas
                 <div class="col-md-6 col-lg-3">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body text-center">
-                            <i class="fas fa-paint-roller service-icon mb-3"></i>
+                            <div class="service-icon mb-3">🎨</div>
                             <h5 class="card-title">Painting Works</h5>
                             <p class="card-text">High-quality interior and exterior painting with premium finishes.</p>
                             <a href="painting.php" class="btn btn-primary">Learn More</a>
@@ -228,7 +213,7 @@ $meta_description = 'Expert roofing, biodigester installation, aluminum and glas
                 <div class="col-md-6 col-lg-3">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body text-center">
-                            <i class="fas fa-door-open service-icon mb-3"></i>
+                            <div class="service-icon mb-3">🚪</div>
                             <h5 class="card-title">Interior Works & Fittings</h5>
                             <p class="card-text">Custom interior solutions, including door fittings, kitchen cabinets, wardrobes, and tongue-and-groove fittings.</p>
                             <a href="interior_works.php" class="btn btn-primary">Learn More</a>
@@ -238,7 +223,7 @@ $meta_description = 'Expert roofing, biodigester installation, aluminum and glas
                 <div class="col-md-6 col-lg-3">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body text-center">
-                            <i class="fas fa-th-large service-icon mb-3"></i>
+                            <div class="service-icon mb-3">🧱</div>
                             <h5 class="card-title">Tiling Works</h5>
                             <p class="card-text">Expert tiling for floors, walls, kitchens, balconies, and rooftops with superior craftsmanship.</p>
                             <a href="tiling_works.php" class="btn btn-primary">Learn More</a>
@@ -258,7 +243,7 @@ $meta_description = 'Expert roofing, biodigester installation, aluminum and glas
                         <div class="col-sm-6">
                             <div class="d-flex">
                                 <div class="flex-shrink-0">
-                                    <i class="fas fa-certificate feature-icon"></i>
+                                    <div class="feature-icon">✓</div>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h5>Licensed & Insured</h5>
@@ -269,7 +254,7 @@ $meta_description = 'Expert roofing, biodigester installation, aluminum and glas
                         <div class="col-sm-6">
                             <div class="d-flex">
                                 <div class="flex-shrink-0">
-                                    <i class="fas fa-star feature-icon"></i>
+                                    <div class="feature-icon">⭐</div>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h5>Quality Guarantee</h5>
@@ -280,7 +265,7 @@ $meta_description = 'Expert roofing, biodigester installation, aluminum and glas
                         <div class="col-sm-6">
                             <div class="d-flex">
                                 <div class="flex-shrink-0">
-                                    <i class="fas fa-bolt feature-icon"></i>
+                                    <div class="feature-icon">⚡</div>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h5>Rapid Service</h5>
@@ -291,7 +276,7 @@ $meta_description = 'Expert roofing, biodigester installation, aluminum and glas
                         <div class="col-sm-6">
                             <div class="d-flex">
                                 <div class="flex-shrink-0">
-                                    <i class="fas fa-dollar-sign feature-icon"></i>
+                                    <div class="feature-icon">💰</div>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h5>Transparent Pricing</h5>
@@ -315,12 +300,39 @@ $meta_description = 'Expert roofing, biodigester installation, aluminum and glas
             </div>
             <div id="projectsCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    <?php for ($i = 0; $i < 33; $i++): ?>
-                        <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="<?php echo $i; ?>" <?php echo $i === 0 ? 'class="active"' : ''; ?>></button>
-                    <?php endfor; ?>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="2"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="3"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="4"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="5"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="6"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="7"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="8"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="9"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="10"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="11"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="12"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="13"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="14"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="15"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="16"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="17"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="18"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="19"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="20"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="21"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="22"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="23"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="24"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="25"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="26"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="27"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="28"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="29"></button>
+                    <button type="button" data-bs-target="#projectsCarousel" data-bs-slide-to="30"></button>
                 </div>
                 <div class="carousel-inner rounded shadow">
-                    <!-- Roofing and Gutters Images -->
                     <div class="carousel-item active">
                         <img src="roofingandgutters1.jpeg" class="d-block w-100" alt="Roofing Project 1">
                         <div class="carousel-caption d-none d-md-block">
@@ -412,26 +424,132 @@ $meta_description = 'Expert roofing, biodigester installation, aluminum and glas
                             <p>End-to-end roofing solution</p>
                         </div>
                     </div>
-                    <!-- Interior Works Images -->
-                    <?php for ($i = 1; $i <= 9; $i++): ?>
-                        <div class="carousel-item">
-                            <img src="intworks<?php echo $i; ?>.jpeg" class="d-block w-100" alt="Interior Work <?php echo $i; ?>">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Interior Work Project <?php echo $i; ?></h5>
-                                <p>Custom interior fittings and design</p>
-                            </div>
+                    <div class="carousel-item">
+                        <img src="tiling1.jpeg" class="d-block w-100" alt="Tiling Project 1">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Premium Floor Tiling</h5>
+                            <p>Elegant ceramic tile installation</p>
                         </div>
-                    <?php endfor; ?>
-                    <!-- Tiling Works Images -->
-                    <?php for ($i = 1; $i <= 11; $i++): ?>
-                        <div class="carousel-item">
-                            <img src="tiling<?php echo $i; ?>.jpeg" class="d-block w-100" alt="Tiling Work <?php echo $i; ?>">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Tiling Project <?php echo $i; ?></h5>
-                                <p>Precision tiling for residential and commercial spaces</p>
-                            </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="tiling2.jpeg" class="d-block w-100" alt="Tiling Project 2">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Kitchen Wall Tiling</h5>
+                            <p>Modern kitchen backsplash design</p>
                         </div>
-                    <?php endfor; ?>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="tiling3.jpeg" class="d-block w-100" alt="Tiling Project 3">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Bathroom Tiling</h5>
+                            <p>Waterproof bathroom tile installation</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="tiling4.jpeg" class="d-block w-100" alt="Tiling Project 4">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Balcony Tiling</h5>
+                            <p>Weather-resistant outdoor tiling</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="tiling5.jpeg" class="d-block w-100" alt="Tiling Project 5">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Rooftop Tiling</h5>
+                            <p>Durable rooftop tile installation</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="tiling6.jpeg" class="d-block w-100" alt="Tiling Project 6">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Living Room Tiling</h5>
+                            <p>Luxury porcelain tile flooring</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="tiling7.jpeg" class="d-block w-100" alt="Tiling Project 7">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Commercial Tiling</h5>
+                            <p>Office space tile installation</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="tiling8.jpeg" class="d-block w-100" alt="Tiling Project 8">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Decorative Wall Tiling</h5>
+                            <p>Artistic tile pattern design</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="tiling9.jpeg" class="d-block w-100" alt="Tiling Project 9">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Mosaic Tiling</h5>
+                            <p>Custom mosaic tile artwork</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="tiling10.jpeg" class="d-block w-100" alt="Tiling Project 10">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Outdoor Patio Tiling</h5>
+                            <p>Non-slip outdoor tile solution</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="intworks1.jpeg" class="d-block w-100" alt="Interior Works Project 1">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Custom Kitchen Cabinets</h5>
+                            <p>Bespoke kitchen cabinet installation</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="intworks2.jpeg" class="d-block w-100" alt="Interior Works Project 2">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Wardrobe Fittings</h5>
+                            <p>Built-in wardrobe solutions</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="intworks3.jpeg" class="d-block w-100" alt="Interior Works Project 3">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Door Installation</h5>
+                            <p>Premium door fitting services</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="intworks4.jpeg" class="d-block w-100" alt="Interior Works Project 4">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Tongue & Groove Ceiling</h5>
+                            <p>Elegant wooden ceiling installation</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="intworks5.jpeg" class="d-block w-100" alt="Interior Works Project 5">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Living Room Fittings</h5>
+                            <p>Complete living room interior design</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="intworks6.jpeg" class="d-block w-100" alt="Interior Works Project 6">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Office Interior Design</h5>
+                            <p>Professional workspace setup</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="intworks7.jpeg" class="d-block w-100" alt="Interior Works Project 7">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Bedroom Fittings</h5>
+                            <p>Custom bedroom furniture installation</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="intworks8.jpeg" class="d-block w-100" alt="Interior Works Project 8">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Dining Room Setup</h5>
+                            <p>Complete dining area interior works</p>
+                        </div>
+                    </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#projectsCarousel" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -501,7 +619,7 @@ $meta_description = 'Expert roofing, biodigester installation, aluminum and glas
                     <p><?php echo TAGLINE; ?></p>
                     <p class="mb-2"><strong>Phone:</strong> <a href="tel:<?php echo PHONE; ?>" class="text-white"><?php echo PHONE; ?></a></p>
                     <p class="mb-2"><strong>Email:</strong> <a href="mailto:<?php echo EMAIL; ?>" class="text-white"><?php echo EMAIL; ?></a></p>
-                    <p><strong>Address:</strong> <? N/A ?> Makadara, Nairobi, Kenya</p>
+                    <p><strong>Address:</strong> <?php echo ADDRESS; ?></p>
                 </div>
                 <div class="col-lg-2">
                     <h6 class="fw-bold mb-3">Services</h6>
@@ -543,18 +661,16 @@ $meta_description = 'Expert roofing, biodigester installation, aluminum and glas
     </footer>
 
     <div class="whatsapp-float">
-        <a href="https://wa.me/<?php echo str_replace('+', '', WHATSAPP); ?>" target="_blank" title="Chat with us on WhatsApp">
-            <i class="fab fa-whatsapp fa-2x"></i>
+        <a href="https://wa.me/<?php echo str_replace('+', '', WHATSAPP); ?>" target="_blank" class="btn btn-success rounded-circle">
+            <span class="whatsapp-icon">💬</span>
         </a>
     </div>
 
-    <button id="backToTop" class="btn btn-primary rounded-circle back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    <button id="backToTop" class="btn btn-primary rounded-circle back-to-top">↑</button>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Back to top button functionality
+        // Simple back to top button functionality
         document.addEventListener('DOMContentLoaded', function() {
             const backToTopButton = document.getElementById('backToTop');
             
